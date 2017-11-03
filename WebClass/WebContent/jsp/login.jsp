@@ -1,5 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
+<% 
+	String errorid = (String)request.getAttribute("errorid");
+	if (errorid == null) errorid = "";
+%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,34 +18,38 @@
 <body>
 <div class="container">
 
-  <form class="form-signin" action="/WebClass/login" method="post">
+  <form class="form-signin" action="/WebClass/bloglogin" method="post">
     <h2 class="form-signin-heading">Please sign in</h2>
     
     <label for="inputEmail" class="sr-only">Email address</label>
-    <input type="email" name="id" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+    <input type="email" name="id" id="inputEmail" class="form-control" placeholder="Email address" value="<%=errorid%>" required autofocus>
+    <input type="password" name="pwd" class="form-control" placeholder="Password" required>
     
-    <label for="inputPassword" class="sr-only">Password</label>
-    <input type="password" name="pwd" id="inputPassword" class="form-control" placeholder="Password" required>
-
+    
     <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
   </form>
 
 </div>
-
-<%@ include file="modal.jsp" %>
-
-<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
-
-<script>
+	
+	<%@include file="modal.jsp" %>
+	
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+	
+	<script>
 	<%-- 로그인이 실패한 경우 처리 추가 --%>
-	<%--
-		var myModal = $('#myModal');
-		myModal.find('.modal-title').text('Login Error');
-		myModal.find('.modal-body').text('Invalid username or password');
-		myModal.modal();
-	--%>
+	<%
+		if(request.getAttribute("errorid")!=null){
+			
+	%>
+	var myModal = $('#myModal');
+	myModal.find('.modal-title').text('로그인 실패');
+	myModal.find('.modal-body').text('아이디 오류');
+	myModal.modal();
+	<%
+		}
+	%>
 </script>
 
 </body>
