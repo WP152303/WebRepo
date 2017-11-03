@@ -64,12 +64,12 @@ public class LoginServlet extends HttpServlet {
 			
 			UserVO user=new UserVO();
 			user.setId(id);
-			user.setName("도경수");
-			user.setNickname("됴디오");
+			user.setName("김도완");
+			user.setNickname("김도완");
 	
 			session.setAttribute("user", user);
 		
-			RequestDispatcher rd =request.getRequestDispatcher("/jsp/home.jsp");
+			RequestDispatcher rd =request.getRequestDispatcher("index.jsp");
 			rd.forward(request, response);
 		}
 	

@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- * Servlet implementation class BlogLogout
+ * Servlet implementation class Logout
  */
 @WebServlet("/bloglogout")
 public class BlogLogoutServlet extends HttpServlet {
@@ -29,19 +29,16 @@ public class BlogLogoutServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		doPost(request,response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		HttpSession session = request.getSession();
-		
 		session.invalidate();
-		
-		RequestDispatcher rd = request.getRequestDispatcher("myblog2304/home.jsp");
+		RequestDispatcher rd= request.getRequestDispatcher("/index.jsp");
 		rd.forward(request, response);
 	}
 
